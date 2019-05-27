@@ -11,11 +11,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
@@ -74,13 +70,13 @@ public class EmployeeJPATest {
         assertThat(EmployeePage.getTotalPages()).isEqualTo(3);
     }
 //
-//    @Test
-//    public void should_return_company_name_when_input_employee_name() throws Exception {
-//        //5.查找xiaohong的所在的公司的公司名称
-//        String expectedCompanyName = "alibaba";
-//        String actualCompanyName = null;
-//        assertThat(actualCompanyName).isEqualTo(expectedCompanyName);
-//    }
+    @Test
+    public void should_return_company_name_when_input_employee_name() throws Exception {
+        //5.查找xiaohong的所在的公司的公司名称
+        String expectedCompanyName = "alibaba";
+        String actualCompanyName = employeeRepository.findCompanyNameByEmployeeName("xiaohong");
+        assertThat(actualCompanyName).isEqualTo(expectedCompanyName);
+    }
 //
 //    @Test
 //    public void should_return_influence_lines_when_update_employee_name() throws Exception {
