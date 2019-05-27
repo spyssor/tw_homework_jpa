@@ -2,6 +2,7 @@ package com.example.employee.repository;
 
 import com.example.employee.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -9,8 +10,12 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     //以下所有的*都代表变量
 
     //1.查询名字是*的第一个employee
+    @Query(nativeQuery = true, value = "select * from employee where name = ?1 limit 1")
+    Employee findOneByEmployeeName(String name);
 
     //2.找出Employee表中第一个姓名包含`*`字符并且薪资大于*的雇员个人信息
+    @Query(nativeQuery = true, value = "select * from employee where name like %?1% and salary > ?2")
+    Employee findOneByWhoNameIncludeAndSalaryGreatThan(String name, Integer salary);
 
     //3.找出一个薪资最高且公司ID是*的雇员以及该雇员的姓名
 
