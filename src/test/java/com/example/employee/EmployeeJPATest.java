@@ -61,7 +61,7 @@ public class EmployeeJPATest {
         String actualName = employeeRepository.findOneByWhoSalaryIsTopAndCompanyId(1);
         assertThat(actualName).isEqualTo(expectedEmployee.getName());
     }
-//
+
     @Test
     public void should_return_employee_list_when_input_page_request() throws Exception {
         //4.实现对Employee的分页查询，每页两条数据，一共三页数。
@@ -69,7 +69,7 @@ public class EmployeeJPATest {
         Page<Employee> EmployeePage = employeeRepository.findAll(PageRequest.of(1, 2));
         assertThat(EmployeePage.getTotalPages()).isEqualTo(3);
     }
-//
+
     @Test
     public void should_return_company_name_when_input_employee_name() throws Exception {
         //5.查找xiaohong的所在的公司的公司名称
@@ -77,7 +77,7 @@ public class EmployeeJPATest {
         String actualCompanyName = employeeRepository.findCompanyNameByEmployeeName("xiaohong");
         assertThat(actualCompanyName).isEqualTo(expectedCompanyName);
     }
-//
+
     @Test
     public void should_return_influence_lines_when_update_employee_name() throws Exception {
         //6.将xiaohong的名字改成xiaobai,输出这次修改影响的行数
@@ -86,12 +86,13 @@ public class EmployeeJPATest {
         Integer actualLine = employeeRepository.findAffectedRows();
         assertThat(actualLine).isEqualTo(expectedLine);
     }
-//
-//    @Test
-//    public void should_deleted_employee_when_given_employee_name() throws Exception {
-//        //7.删除姓名是xiaohong的employee
-//        Employee expectedEmployee = new Employee(1,"xiaohong",19,"female",1,7000);
-//        Employee actualEmployee = null;
-//        assertThat(actualEmployee).isNull();
-//    }
+
+    @Test
+    public void should_deleted_employee_when_given_employee_name() throws Exception {
+        //7.删除姓名是xiaohong的employee
+        Employee expectedEmployee = new Employee(1,"xiaohong",19,"female",1,7000);
+        employeeRepository.deleteEmployeeByName("xiaohong");
+        Employee actualEmployee = employeeRepository.findOneByEmployeeName("xiaohong");
+        assertThat(actualEmployee).isNull();
+    }
 }

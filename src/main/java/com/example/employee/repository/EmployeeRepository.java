@@ -44,5 +44,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     Integer findAffectedRows();
 
     //7.删除姓名是*的employee
+    @Modifying
+    @Query(nativeQuery = true, value = "delete from employee where name = ?1")
+    void deleteEmployeeByName(String name);
 
 }
