@@ -1,8 +1,12 @@
 package com.example.employee.repository;
 
 import com.example.employee.entity.Employee;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -24,6 +28,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     String findOneByWhoSalaryIsTopAndCompanyId(Integer companyId);
 
     //4.实现对Employee的分页查询，每页两个数据
+    @Query(nativeQuery = true, value = "select * from employee")
+    Page<Employee> list(Pageable pageable);
 
     //5.查找**的所在的公司的公司名称
 
