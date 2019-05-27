@@ -92,7 +92,7 @@ public class EmployeeJPATest {
         //7.删除姓名是xiaohong的employee
         Employee expectedEmployee = new Employee(1,"xiaohong",19,"female",1,7000);
         employeeRepository.deleteEmployeeByName("xiaohong");
-        Employee actualEmployee = employeeRepository.findOneByEmployeeName("xiaohong");
+        Employee actualEmployee = employeeRepository.findOneByEmployeeName(expectedEmployee.getName());
         assertThat(actualEmployee).isNull();
     }
 }
