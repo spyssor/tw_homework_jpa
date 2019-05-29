@@ -12,5 +12,3 @@ spring:
       naming:
         implicitStrategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
         physicalStrategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
