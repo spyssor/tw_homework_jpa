@@ -1,5 +1,6 @@
 package com.example.employee.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,14 +13,19 @@ public class Employee {
     @GeneratedValue
     private Integer id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "age")
     private Integer age;
 
+    @Column(name = "gender")
     private String gender;
 
+    @Column(name = "companyId")
     private Integer companyId;
 
+    @Column(name = "salary")
     private Integer salary;
 
     public Employee(){}
